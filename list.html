@@ -1,0 +1,26 @@
+<button ng-click="open()">add task</button>
+<form>
+<!-- <form ng-submit="tdc.addTask()">
+    <input type="text" ng-model="tdc.todoInput" size="50" placeholder="Add New">
+    <input type="submit" value="Add New">
+    <br> -->
+    <label for="orderToDoList"> order ToDoList: </label><br>
+    <select name = "orderToDoList" ng-model= "tdc.orderValue">
+    	<option value = "todoText"> todoText </option>
+    	<option value = "-todoText"> -todoText </option>
+    	<option value = "done"> done </option>
+    	<option value = "-done"> -done </option>
+        <option value = "$index"> add date </option>
+    </select>
+</form>
+<p>order by {{tdc.orderValue || "nothing"}}</p>
+<div ng-repeat="task in tdc.tasks| orderBy: tdc.orderValue">
+	<input type="checkbox" ng-model="task.done">
+    <a ui-sref="thetask-qs({id: tdc.tasks.indexOf(task)})">
+        <span ng-bind="task.todoText"></span>
+    </a>
+</div>
+<p><button ng-click="tdc.remove()">Remove marked</button></p>
+<p>Remains <span ng-bind="tdc.tasks.length"></span></p>
+            
+        
